@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentTransaction;
+
+import at.rosc.memeswiper.fragments.StartFragment;
+import at.rosc.memeswiper.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.state.observe(this, state -> {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            switch (state) {
+                case MainViewModel.START_PAGE:
+                    fragmentTransaction.replace(R.id.main,new StartFragment()).addToBackStack("START");
+                    break;
+            }
+            fragmentTransaction.commit();
         });
     }
 }
