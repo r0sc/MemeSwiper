@@ -10,7 +10,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.FragmentTransaction;
 
-import at.rosc.memeswiper.fragments.HowToPlayFragment;
+import at.rosc.memeswiper.fragments.CreditsFragment;
+import at.rosc.memeswiper.fragments.MemeListFragment;
 import at.rosc.memeswiper.fragments.StartFragment;
 import at.rosc.memeswiper.viewmodels.MainViewModel;
 
@@ -33,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
                 case MainViewModel.START_PAGE:
                     fragmentTransaction.replace(R.id.main,new StartFragment()).addToBackStack("START");
                     break;
-                case MainViewModel.HOW_TO_PLAY_PAGE:
-                    fragmentTransaction.replace(R.id.main,new HowToPlayFragment()).addToBackStack("HOW_TO_PLAY");
+                case MainViewModel.CREDITS_PAGE:
+                    fragmentTransaction.replace(R.id.main,new CreditsFragment()).addToBackStack("CREDITS");
+                    break;
+                case MainViewModel.FAVORITES_PAGE:
+                    fragmentTransaction.replace(R.id.main,new MemeListFragment()).addToBackStack("FAVORITES");
                     break;
             }
             fragmentTransaction.commit();

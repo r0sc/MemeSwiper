@@ -16,15 +16,19 @@ import at.rosc.memeswiper.viewmodels.MemeViewModel;
 
 public class File {
     private static final Gson gson = new Gson();
-    public void read(Context context, ViewModelStoreOwner owner) {
+    public ArrayList<Meme> read(Context context, ViewModelStoreOwner owner) {
         MemeViewModel memeViewModel = new ViewModelProvider(owner).get(MemeViewModel.class);
         List<Meme> deineObjekteList = memeViewModel.getMemes();
         String jsonString = IOHandler.read(context);
         TypeToken<List<Meme>> listTypeToken = new TypeToken<List<Meme>>() {};
         if(jsonString == null){
-            deineObjekteList = new ArrayList<>();
+            return new ArrayList<>();
         }else{
-            deineObjekteList = gson.fromJson(jsonString, listTypeToken.getType());
+            return gson.fromJson(jsonString, listTypeToken.getType());
         }
+    }
+    public void write(ArrayList<Meme> memes, Context context) {
+        String jsonString = gson.toJson(memes);
+        IOHandler.write(context, jsonString);
     }
 }

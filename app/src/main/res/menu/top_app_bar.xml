@@ -2,15 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item_htp"
-        android:title="How To Play"
-        android:contentDescription="Shows how to play memeswiper"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/item_fav"
-        android:title="Favorites" />
+        android:title="Favorites"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/item_credits"
-        android:title="Credits" />
+        android:title="Credits"
+        app:showAsAction="never"/>
 
 </menu>

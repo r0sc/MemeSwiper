@@ -8,11 +8,11 @@ import java.util.List;
 import at.rosc.memeswiper.logic.Meme;
 
 public class MemeViewModel extends ViewModel {
-    private List<Meme> memes = new ArrayList<>();
+    private ArrayList<Meme> memes = new ArrayList<>();
     public void addMeme(Meme meme) {
         memes.add(meme);
     }
-    public List<Meme> getMemes() {
+    public ArrayList<Meme> getMemes() {
         return memes;
     }
 }
