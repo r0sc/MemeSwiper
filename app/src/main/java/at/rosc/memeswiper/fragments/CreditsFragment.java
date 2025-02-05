@@ -44,8 +44,10 @@ public class CreditsFragment extends Fragment {
                 return true;
             } else if (item.getItemId() == R.id.item_fav) {
                 viewModel.setFavPage();
-                File file = new File();
-                file.write(memeViewModel.getMemes(), requireContext());
+                if (!memeViewModel.getMemes().isEmpty()) {
+                    File file = new File();
+                    file.write(memeViewModel.getMemes(), requireContext());
+                }
                 return true;
             }
             return false;

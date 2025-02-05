@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -44,11 +45,16 @@ public class StartFragment extends Fragment {
         MemeViewModel memeViewModel = new ViewModelProvider(requireActivity()).get(MemeViewModel.class);
         APIRequester requester = new APIRequester();
         requester.loadMeme(getContext(), requireActivity(), binding.imageView);
+        memeViewModel.setMemeEmpty();
+        File file = new File();
+        if (!file.read(requireContext(),requireActivity()).isEmpty()) {
+            memeViewModel.setMemes(file.read(requireContext(),requireActivity()));
+        }
         binding.btnAss.setOnClickListener(view -> {
-            requester.loadMeme(getContext(), requireActivity(), binding.imageView);
+            requester.loadMemeDisableButton(getContext(), requireActivity(), binding.imageView,new Button[]{binding.btnAss,binding.btnFire});
         });
         binding.btnFire.setOnClickListener(view -> {
-            requester.loadMeme(getContext(), requireActivity(), binding.imageView);
+            requester.loadMemeDisableButtonLike(getContext(), requireActivity(), binding.imageView,new Button[]{binding.btnAss,binding.btnFire});
         });
         binding.topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.item_credits) {
@@ -56,8 +62,9 @@ public class StartFragment extends Fragment {
                 return true;
             } else if (item.getItemId() == R.id.item_fav) {
                 viewModel.setFavPage();
-                File file = new File();
-                file.write(memeViewModel.getMemes(), requireContext());
+                if (!memeViewModel.getMemes().isEmpty()) {
+                    file.write(memeViewModel.getMemes(), requireContext());
+                }
                 return true;
             }
             return false;

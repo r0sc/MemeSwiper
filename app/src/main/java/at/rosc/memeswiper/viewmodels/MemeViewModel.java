@@ -15,4 +15,10 @@ public class MemeViewModel extends ViewModel {
     public ArrayList<Meme> getMemes() {
         return memes;
     }
+    public void setMemes(ArrayList<Meme> memes) {
+        this.memes = memes;
+    }
+    public void setMemeEmpty() {
+        memes = new ArrayList<>();
+    }
 }

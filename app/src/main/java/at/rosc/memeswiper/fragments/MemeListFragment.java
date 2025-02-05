@@ -72,7 +72,9 @@ public class MemeListFragment extends Fragment {
                 return true;
             } else if (item.getItemId() == R.id.item_fav) {
                 mainViewModel.setFavPage();
-                file.write(memeViewModel.getMemes(), requireContext());
+                if (!memeViewModel.getMemes().isEmpty()) {
+                    file.write(memeViewModel.getMemes(), requireContext());
+                }
                 return true;
             }
             return false;
