@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.volley)
     implementation (libs.glide)
     implementation(libs.gson)
+    implementation(libs.picasso)
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
     testImplementation(libs.junit)

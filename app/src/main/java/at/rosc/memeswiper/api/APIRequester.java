@@ -15,12 +15,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import at.rosc.memeswiper.R;
 import at.rosc.memeswiper.logic.Meme;
 import at.rosc.memeswiper.viewmodels.MemeViewModel;
 
@@ -34,7 +36,12 @@ public class APIRequester {
                 String url = "";
                 try {
                     url = response.getString("url");
-                    Glide.with(context).load(url).into(imageView);
+                    //Glide.with(context).load(url).into(imageView);
+                    Picasso.get()
+                            .load(url)
+                            .placeholder(R.drawable.loading)
+                            .fit()
+                            .into(imageView);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -68,7 +75,12 @@ public class APIRequester {
                             return;
                         }
                     }
-                    Glide.with(context).load(url).into(imageView);
+                    //Glide.with(context).load(url).into(imageView);
+                    Picasso.get()
+                            .load(url)
+                            .placeholder(R.drawable.loading)
+                            .fit()
+                            .into(imageView);
                     for (Button button : buttons) {
                         button.setClickable(true);
                     }
@@ -105,7 +117,14 @@ public class APIRequester {
                         }
                     }
                     viewModel.addMeme(new Meme(url, response.getString("title")));
-                    Glide.with(context).load(url).into(imageView);
+                    //Glide.with(context).load(url).into(imageView);
+
+                    Picasso.get()
+                            .load(url)
+                            .placeholder(R.drawable.loading)
+                            .fit()
+                            .into(imageView);
+
                     for (Button button : buttons) {
                         button.setClickable(true);
                     }
